@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const axiosDefaults = require("axios/lib/defaults");
 const defaultRoute = require("./routes/defaultRoute");
-//  const seedDB = require("./seeds");
+// const seedDB = require("./seeds");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -16,11 +16,14 @@ app.prepare().then(() => {
 
   // connecting to db
   mongoose
-    .connect("mongodb://localhost:27017/cmt_react", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true
-    })
+    .connect(
+      "mongodb+srv://sukhrobyangibaev:demon9609@cluster0-rqkvz.mongodb.net/cmt-react?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+      }
+    )
     .then(() => {
       console.log("connected to db...");
     })
@@ -40,7 +43,8 @@ app.prepare().then(() => {
   });
 
   // seedDB();
-  axiosDefaults.baseURL = "http://localhost:3000";
+  // http://localhost:3000
+  axiosDefaults.baseURL = "https://classical-music-test-react.herokuapp.com/";
 
   const PORT = process.env.PORT || 3000;
   server.listen(PORT, err => {
