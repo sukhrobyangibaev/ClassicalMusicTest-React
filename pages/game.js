@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Router, { useRouter } from "next/router";
-import { set } from "mongoose";
 import Layout from "../components/Layout";
 import AudioPlayer from "../components/AudioPlayer";
 
 function Index({ data: { raund, player } }) {
   const router = useRouter();
   const { id } = router.query;
-  const {username} = player;
+  const { username } = player;
   const [points, setPoints] = useState(player.points);
   const [titles, setTitles] = useState(raund.titles);
   const [lvl, setLvl] = useState(raund.lvl);

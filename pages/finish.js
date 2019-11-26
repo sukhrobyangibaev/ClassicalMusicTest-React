@@ -8,17 +8,13 @@ import MiniPlayer from "../components/MiniPlayer";
 
 function finish({ player: { _id, username, points, answers } }) {
   const handleRetry = async () => {
-    await axios
-      .post("/refreshplayer", { id: _id })
-      .then(
-        Router.push({
-          pathname: "/game",
-          query: { id: _id }
-        })
-      )
-      .catch(error => {
-        console.log(error);
-      });
+    await axios.post("/refreshplayer", { id: _id }).catch(error => {
+      console.log(error);
+    });
+    Router.push({
+      pathname: "/game",
+      query: { id: _id }
+    });
   };
 
   return (
